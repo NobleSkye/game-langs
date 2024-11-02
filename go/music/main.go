@@ -6,6 +6,8 @@ import (
 	"image"
 	"image/color"
 	"image/draw"
+	"os"
+	"path/filepath"
 	"time"
 
 	_ "embed"
@@ -20,63 +22,7 @@ import (
 )
 
 // Embed MP3 audio files
-var (
-	//go:embed 01 Key.mp3
-	track01 []byte
-	//go:embed 02 Door.mp3
-	track02 []byte
-	//go:embed 03 Subwoofer Lullaby.mp3
-	track03 []byte
-	//go:embed 04 Death.mp3
-	track04 []byte
-	//go:embed 05 Living Mice.mp3
-	track05 []byte
-	//go:embed 06 Moog City.mp3
-	track06 []byte
-	//go:embed 07 Haggstrom.mp3
-	track07 []byte
-	//go:embed 08 Minecraft.mp3
-	track08 []byte
-	//go:embed 09 Oxygene.mp3
-	track09 []byte
-	//go:embed 10 Equinoxe.mp3
-	track10 []byte
-	//go:embed 11 Miceon Venus.mp3
-	track11 []byte
-	//go:embed 12 Dry Hands.mp3
-	track12 []byte
-	//go:embed 13 Wet Hands.mp3
-	track13 []byte
-	//go:embed 14 Clark.mp3
-	track14 []byte
-	//go:embed 15 Chris.mp3
-	track15 []byte
-	//go:embed 16 Thirteen.mp3
-	track16 []byte
-	//go:embed 17 Excuse.mp3
-	track17 []byte
-	//go:embed 18 Sweden.mp3
-	track18 []byte
-	//go:embed 19 Cat.mp3
-	track19 []byte
-	//go:embed 20 Dog.mp3
-	track20 []byte
-	//go:embed 21 Danny.mp3
-	track21 []byte
-	//go:embed 22 Beginning.mp3
-	track22 []byte
-	//go:embed 23 Droopy Likes Ricochet.mp3
-	track23 []byte
-	//go:embed 24 Droopy Likes Your Face.mp3
-	track24 []byte
-)
-
-// Track information
-type Track struct {
-	name     string
-	data     []byte
-	duration time.Duration
-}
+var trackFiles []string // Hold track filenames
 
 // Constants
 const (
@@ -95,6 +41,13 @@ var (
 	highlightColor  = color.RGBA{0x00, 0x88, 0xFF, 0xFF}
 )
 
+// Track information
+type Track struct {
+	name     string
+	data     []byte
+	duration time.Duration
+}
+
 // Player struct with enhanced features
 type Player struct {
 	audioContext *audio.Context
@@ -104,54 +57,8 @@ type Player struct {
 	volume       float64
 }
 
-func initTracks() []Track {
-	return []Track{
-		{"01 Key.mp3", track01, 0},
-		{"02 Door.mp3", track02, 0},
-		{"03 Subwoofer Lullaby.mp3", track03, 0},
-		{"04 Death.mp3", track04, 0},
-		{"05 Living Mice.mp3", track05, 0},
-		{"06 Moog City.mp3", track06, 0},
-		{"07 Haggstrom.mp3", track07, 0},
-		{"08 Minecraft.mp3", track08, 0},
-		{"09 Oxygene.mp3", track09, 0},
-		{"10 Equinoxe.mp3", track10, 0},
-		{"11 Miceon Venus.mp3", track11, 0},
-		{"12 Dry Hands.mp3", track12, 0},
-		{"13 Wet Hands.mp3", track13, 0},
-		{"14 Clark.mp3", track14, 0},
-		{"15 Chris.mp3", track15, 0},
-		{"16 Thirteen.mp3", track16, 0},
-		{"17 Excuse.mp3", track17, 0},
-		{"18 Sweden.mp3", track18, 0},
-		{"19 Cat.mp3", track19, 0},
-		{"20 Dog.mp3", track20, 0},
-		{"21 Danny.mp3", track21, 0},
-		{"22 Beginning.mp3", track22, 0},
-		{"23 Droopy Likes Ricochet.mp3", track23, 0},
-		{"24 Droopy Likes Your Face.mp3", track24, 0},
-	}
-}
-
-// NewPlayer initializes a Player
-func NewPlayer(audioContext *audio.Context) (*Player, error) {
-	tracks := initTracks()
-	p := &Player{
-		audioContext: audioContext,
-		currentTrack: 0,
-		tracks:       tracks,
-		volume:       1.0,
-	}
-
-	if err := p.loadTrack(); err != nil {
-		return nil, err
-	}
-
-	return p, nil
-}
-
-// Load track with volume control
-func (p *Player) loadTrack() error {
+// Load track data
+func (p *Player) loadTrackData() error {
 	track := p.tracks[p.currentTrack]
 
 	reader, err := mp3.DecodeF32(bytes.NewReader(track.data))
@@ -176,6 +83,49 @@ func (p *Player) loadTrack() error {
 	return nil
 }
 
+// Initialize tracks list by scanning a directory
+func initTracks(directory string) ([]Track, error) {
+	var tracks []Track
+
+	err := filepath.Walk(directory, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if !info.IsDir() && filepath.Ext(info.Name()) == ".mp3" {
+			data, err := os.ReadFile(path)
+			if err != nil {
+				return err
+			}
+			tracks = append(tracks, Track{name: info.Name(), data: data, duration: 0})
+		}
+		return nil
+	})
+	return tracks, err
+}
+
+// NewPlayer initializes a Player with audio context and directory of tracks
+func NewPlayer(audioContext *audio.Context, directory string) (*Player, error) {
+	tracks, err := initTracks(directory) // Load tracks from directory
+	if err != nil {
+		return nil, err // Handle error
+	}
+
+	p := &Player{
+		audioContext: audioContext,
+		currentTrack: 0,
+		tracks:       tracks,
+		volume:       1.0,
+	}
+
+	if len(tracks) > 0 {
+		if err := p.loadTrackData(); err != nil { // Load first track data
+			return nil, err
+		}
+	}
+
+	return p, nil // Return initialized player
+}
+
 // Update player state with playlist navigation
 func (p *Player) update() error {
 	// Volume controls
@@ -191,11 +141,11 @@ func (p *Player) update() error {
 	// Track navigation
 	if inpututil.IsKeyJustPressed(ebiten.KeyRight) {
 		p.currentTrack = (p.currentTrack + 1) % len(p.tracks)
-		return p.loadTrack()
+		return p.loadTrackData()
 	}
 	if inpututil.IsKeyJustPressed(ebiten.KeyLeft) {
 		p.currentTrack = (p.currentTrack - 1 + len(p.tracks)) % len(p.tracks)
-		return p.loadTrack()
+		return p.loadTrackData()
 	}
 
 	// Playback controls
@@ -210,7 +160,7 @@ func (p *Player) update() error {
 	// Auto-advance
 	if !p.audioPlayer.IsPlaying() && p.audioPlayer.Current() >= p.tracks[p.currentTrack].duration {
 		p.currentTrack = (p.currentTrack + 1) % len(p.tracks)
-		return p.loadTrack()
+		return p.loadTrackData()
 	}
 
 	return nil
@@ -218,10 +168,8 @@ func (p *Player) update() error {
 
 // Draw the UI with playlist and buttons
 func (p *Player) draw(screen *ebiten.Image) {
-	// Clear background
 	screen.Fill(backgroundColor)
 
-	// Draw current track info
 	face := basicfont.Face7x13
 	text.Draw(screen, p.tracks[p.currentTrack].name, face, 20, 35, textColor)
 
@@ -234,7 +182,6 @@ func (p *Player) draw(screen *ebiten.Image) {
 
 	x, y := 10, 50
 	w, h := screenWidth-20, 10
-
 	draw.Draw(screen, image.Rect(x, y, x+w, y+h), &image.Uniform{playerBarColor}, image.Point{}, draw.Src)
 	progressWidth := int(float64(w) * progress)
 	draw.Draw(screen, image.Rect(x, y, x+progressWidth, y+h), &image.Uniform{progressColor}, image.Point{}, draw.Src)
@@ -245,10 +192,7 @@ func (p *Player) draw(screen *ebiten.Image) {
 	text.Draw(screen, currentTimeStr, face, x, y+h+15, textColor)
 	text.Draw(screen, totalTimeStr, face, x+w-50, y+h+15, textColor)
 
-	// Draw buttons
-	// drawButtons(screen)
-
-	// Draw track list
+	// Draw track list in two columns based on track number
 	for i, track := range p.tracks {
 		var color color.Color
 		if i == p.currentTrack {
@@ -256,17 +200,19 @@ func (p *Player) draw(screen *ebiten.Image) {
 		} else {
 			color = textColor
 		}
-		text.Draw(screen, track.name, face, 20, 100+i*20, color)
+
+		// Determine x position based on odd/even track index
+		var xPos int
+		if (i+1)%2 == 0 { // Even track (1-based index)
+			xPos = 220 // Right side
+		} else { // Odd track (1-based index)
+			xPos = 20 // Left side
+		}
+
+		yPos := 100 + (i/2)*20 // New row every two tracks
+		text.Draw(screen, track.name, face, xPos, yPos, color)
 	}
 }
-
-// Draw buttons on the screen
-// func drawButtons(screen *ebiten.Image) {
-// 	face := basicfont.Face7x13
-// 	text.Draw(screen, "Previous", face, 50, 430, textColor)
-// 	text.Draw(screen, "Play/Pause", face, 200, 430, textColor)
-// 	text.Draw(screen, "Next", face, 350, 430, textColor)
-// }
 
 // Format duration as MM:SS
 func formatDuration(d time.Duration) string {
@@ -299,7 +245,10 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 // Main function to initialize and run the game
 func main() {
 	audioContext := audio.NewContext(sampleRate)
-	player, err := NewPlayer(audioContext)
+
+	// Specify the directory where your MP3 files are located
+	directory := "./mp3" // Change this to your directory
+	player, err := NewPlayer(audioContext, directory)
 	if err != nil {
 		panic(err)
 	}
