@@ -1,0 +1,188 @@
+[
+    {
+        "id": 1,
+        "name": "Dark Cave",
+        "description": "A damp cave with flickering shadows.",
+        "exits": {
+            "north": 2,
+            "east": 3
+        }
+    },
+    {
+        "id": 2,
+        "name": "Sunny Meadow",
+        "description": "A bright and cheerful meadow filled with flowers.",
+        "exits": {
+            "south": 1
+        }
+    },
+    {
+        "id": 3,
+        "name": "Ancient Ruins",
+        "description": "Crumbling stone walls overgrown with ivy, echoing whispers of the past.",
+        "exits": {
+            "west": 4,
+            "east": 5
+        }
+    },
+    {
+        "id": 4,
+        "name": "Dark Forest",
+        "description": "A dense, shadowy forest where the trees seem to close in around you.",
+        "exits": {
+            "east": 3,
+            "south": 6
+        }
+    },
+    {
+        "id": 5,
+        "name": "Mystic Springs",
+        "description": "A serene pond with shimmering water, rumored to have healing properties.",
+        "exits": {
+            "west": 3,
+            "north": 7
+        }
+    },
+    {
+        "id": 6,
+        "name": "Crystal Cavern",
+        "description": "A glittering cave filled with luminescent crystals that light the way.",
+        "exits": {
+            "south": 5,
+            "east": 8
+        }
+    },
+    {
+        "id": 7,
+        "name": "Echoing Chamber",
+        "description": "A vast, empty room where even the slightest sound reverberates.",
+        "exits": {
+            "west": 6,
+            "north": 9
+        }
+    },
+    {
+        "id": 8,
+        "name": "The Abyss",
+        "description": "A bottomless pit shrouded in darkness, with a chilling breeze.",
+        "exits": {
+            "south": 7
+        }
+    },
+    {
+        "id": 9,
+        "name": "Forgotten Path",
+        "description": "A narrow trail overgrown with weeds, leading deeper into the woods.",
+        "exits": {
+            "north": 4,
+            "east": 10
+        }
+    },
+    {
+        "id": 10,
+        "name": "Hidden Grove",
+        "description": "A secluded area filled with vibrant flora and a sense of peace.",
+        "exits": {
+            "west": 9,
+            "south": 11
+        }
+    },
+    {
+        "id": 11,
+        "name": "Enchanted Garden",
+        "description": "A lush garden teeming with magical creatures and plants.",
+        "exits": {
+            "north": 10,
+            "east": 12
+        }
+    },
+    {
+        "id": 12,
+        "name": "Fairy Ring",
+        "description": "A circle of mushrooms said to be a gathering place for fairies.",
+        "exits": {
+            "west": 11,
+            "north": 13
+        }
+    },
+    {
+        "id": 13,
+        "name": "Whispering Woods",
+        "description": "A mystical part of the forest where the trees seem to whisper secrets.",
+        "exits": {
+            "south": 12,
+            "east": 14
+        }
+    },
+    {
+        "id": 14,
+        "name": "Abandoned Cabin",
+        "description": "An old, decrepit cabin that looks like it hasn't been used in years.",
+        "exits": {
+            "west": 13,
+            "south": 15
+        }
+    },
+    {
+        "id": 15,
+        "name": "Twilight Glade",
+        "description": "A clearing bathed in the soft glow of twilight, filled with fireflies.",
+        "exits": {
+            "north": 14,
+            "east": 16
+        }
+    },
+    {
+        "id": 16,
+        "name": "Mysterious Portal",
+        "description": "A swirling portal that seems to lead to another realm.",
+        "exits": {
+            "west": 15,
+            "north": 17
+        }
+    },
+    {
+        "id": 17,
+        "name": "Frozen Cavern",
+        "description": "A cold cave filled with ice sculptures and frosty air.",
+        "exits": {
+            "south": 16,
+            "east": 18
+        }
+    },
+    {
+        "id": 18,
+        "name": "Luminous Falls",
+        "description": "A breathtaking waterfall that sparkles in the light, cascading into a pool.",
+        "exits": {
+            "west": 17,
+            "south": 19
+        }
+    },
+    {
+        "id": 19,
+        "name": "The Grand Hall",
+        "description": "A majestic hall with high ceilings and ornate decorations, echoing with history.",
+        "exits": {
+            "north": 18,
+            "east": 20
+        }
+    },
+    {
+        "id": 20,
+        "name": "Library of Shadows",
+        "description": "A vast library filled with ancient books and scrolls, dimly lit by candles.",
+        "exits": {
+            "west": 19,
+            "south": 21
+        }
+    },
+    {
+        "id": 21,
+        "name": "Chamber of Secrets",
+        "description": "A hidden chamber filled with mysterious artifacts and secrets untold.",
+        "exits": {
+            "north": 20
+        }
+    }
+]

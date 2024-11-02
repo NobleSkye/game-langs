@@ -1,0 +1,127 @@
+[
+    {
+        "id": 1,
+        "name": "Old Man",
+        "description": "An old man with a long beard, sitting by the cave entrance."
+    },
+    {
+        "id": 2,
+        "name": "Mysterious Woman",
+        "description": "A woman cloaked in shadows, whispering secrets."
+    },
+    {
+        "id": 3,
+        "name": "Forest Guardian",
+        "description": "A tall, ethereal being who protects the forest and its creatures."
+    },
+    {
+        "id": 4,
+        "name": "Wandering Bard",
+        "description": "A cheerful bard playing a lute, sharing tales of adventure."
+    },
+    {
+        "id": 5,
+        "name": "Ghostly Knight",
+        "description": "A spectral knight in faded armor, eternally bound to guard the ruins."
+    },
+    {
+        "id": 6,
+        "name": "Wise Sage",
+        "description": "An elderly figure with a staff, offering guidance and wisdom."
+    },
+    {
+        "id": 7,
+        "name": "Cunning Merchant",
+        "description": "A sly merchant with a twinkle in his eye, selling unusual wares."
+    },
+    {
+        "id": 8,
+        "name": "Elusive Fairy",
+        "description": "A tiny, glowing creature flitting about, leaving trails of light."
+    },
+    {
+        "id": 9,
+        "name": "Rugged Hunter",
+        "description": "A burly hunter with a bow, skilled in tracking and survival."
+    },
+    {
+        "id": 10,
+        "name": "Enchantress",
+        "description": "A mesmerizing woman with a deep knowledge of magic and potions."
+    },
+    {
+        "id": 11,
+        "name": "Curious Child",
+        "description": "A wide-eyed child full of wonder, eager to explore the world."
+    },
+    {
+        "id": 12,
+        "name": "Grumpy Troll",
+        "description": "A large, grumpy troll guarding a bridge, demanding tolls."
+    },
+    {
+        "id": 13,
+        "name": "Ancient Oracle",
+        "description": "A mystical figure who can see glimpses of the future."
+    },
+    {
+        "id": 14,
+        "name": "Sorrowful Spirit",
+        "description": "A lost spirit wandering the woods, searching for peace."
+    },
+    {
+        "id": 15,
+        "name": "Brave Adventurer",
+        "description": "A bold adventurer ready for any challenge that comes their way."
+    },
+    {
+        "id": 16,
+        "name": "Sneaky Thief",
+        "description": "A quick and stealthy thief, always on the lookout for valuables."
+    },
+    {
+        "id": 17,
+        "name": "Loyal Wolf",
+        "description": "A fierce but friendly wolf, a companion to those who earn its trust."
+    },
+    {
+        "id": 18,
+        "name": "Dancing Spirit",
+        "description": "A joyful spirit that twirls and dances, spreading happiness."
+    },
+    {
+        "id": 19,
+        "name": "Hidden Alchemist",
+        "description": "A mysterious alchemist brewing potions in a hidden lair."
+    },
+    {
+        "id": 20,
+        "name": "Traveling Merchant",
+        "description": "A merchant from afar, selling exotic goods and rare treasures."
+    },
+    {
+        "id": 21,
+        "name": "Cursed Prince",
+        "description": "A young prince trapped in a magical slumber, seeking a way to awaken."
+    },
+    {
+        "id": 22,
+        "name": "Wise Owl",
+        "description": "An ancient owl with knowledge of the forest's secrets."
+    },
+    {
+        "id": 23,
+        "name": "Charming Rogue",
+        "description": "A charming rogue with a knack for getting into and out of trouble."
+    },
+    {
+        "id": 24,
+        "name": "Kind Healer",
+        "description": "A gentle healer, ready to mend wounds and offer comfort."
+    },
+    {
+        "id": 25,
+        "name": "Fierce Dragon",
+        "description": "A majestic dragon with scales like emeralds, guarding its treasure."
+    }
+]

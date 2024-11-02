@@ -1,0 +1,127 @@
+[
+    {
+        "id": 1,
+        "name": "Lantern",
+        "description": "A bright lantern that lights up dark places."
+    },
+    {
+        "id": 2,
+        "name": "Healing Potion",
+        "description": "A potion that restores health."
+    },
+    {
+        "id": 3,
+        "name": "Magic Scroll",
+        "description": "A scroll containing powerful spells waiting to be unleashed."
+    },
+    {
+        "id": 4,
+        "name": "Ancient Map",
+        "description": "A weathered map that reveals hidden paths and treasures."
+    },
+    {
+        "id": 5,
+        "name": "Rope",
+        "description": "A sturdy rope useful for climbing or tying things together."
+    },
+    {
+        "id": 6,
+        "name": "Lockpick Set",
+        "description": "A set of tools for picking locks and unlocking doors."
+    },
+    {
+        "id": 7,
+        "name": "Mystic Gem",
+        "description": "A shimmering gem infused with magical properties."
+    },
+    {
+        "id": 8,
+        "name": "Old Tome",
+        "description": "A dusty book filled with ancient knowledge and forgotten lore."
+    },
+    {
+        "id": 9,
+        "name": "Poisoned Dagger",
+        "description": "A dagger coated with a deadly poison, perfect for stealthy attacks."
+    },
+    {
+        "id": 10,
+        "name": "Traveler's Cloak",
+        "description": "A warm cloak that provides comfort during long journeys."
+    },
+    {
+        "id": 11,
+        "name": "Quiver of Arrows",
+        "description": "A quiver filled with sharp arrows, ready for archery."
+    },
+    {
+        "id": 12,
+        "name": "Elven Bow",
+        "description": "A beautifully crafted bow favored by elven archers for its precision."
+    },
+    {
+        "id": 13,
+        "name": "Golden Key",
+        "description": "A key made of gold, rumored to unlock secret doors."
+    },
+    {
+        "id": 14,
+        "name": "Crystal Ball",
+        "description": "A crystal ball used for scrying and seeing distant events."
+    },
+    {
+        "id": 15,
+        "name": "Food Rations",
+        "description": "Packaged food to sustain you on long journeys."
+    },
+    {
+        "id": 16,
+        "name": "Potion of Invisibility",
+        "description": "A potion that grants temporary invisibility to the drinker."
+    },
+    {
+        "id": 17,
+        "name": "Firestarter Kit",
+        "description": "A kit containing everything needed to start a fire."
+    },
+    {
+        "id": 18,
+        "name": "Enchanted Compass",
+        "description": "A compass that always points to the nearest magical source."
+    },
+    {
+        "id": 19,
+        "name": "Vial of Stardust",
+        "description": "A vial containing shimmering stardust, said to enhance spells."
+    },
+    {
+        "id": 20,
+        "name": "Boots of Speed",
+        "description": "Magical boots that increase the wearer’s speed significantly."
+    },
+    {
+        "id": 21,
+        "name": "Tome of Ancient Spells",
+        "description": "A tome containing powerful spells from a long-lost civilization."
+    },
+    {
+        "id": 22,
+        "name": "Treasure Chest",
+        "description": "An ornate chest filled with gold and precious jewels."
+    },
+    {
+        "id": 23,
+        "name": "Wand of Fire",
+        "description": "A wand that channels fire magic, perfect for casting spells."
+    },
+    {
+        "id": 24,
+        "name": "Bandages",
+        "description": "Clean bandages useful for treating wounds."
+    },
+    {
+        "id": 25,
+        "name": "Potion of Strength",
+        "description": "A potion that temporarily boosts the drinker’s physical strength."
+    }
+]
