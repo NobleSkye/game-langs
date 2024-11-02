@@ -4,6 +4,7 @@ go 1.23.2
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.8.3
+	github.com/ncruces/zenity v0.10.14
 	github.com/sqweek/dialog v0.0.0-20240226140203-065105509627
 	golang.org/x/image v0.21.0
 )
@@ -19,7 +20,6 @@ require (
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
 	github.com/jezek/xgb v1.1.1 // indirect
 	github.com/josephspurrier/goversioninfo v1.4.1 // indirect
-	github.com/ncruces/zenity v0.10.14 // indirect
 	github.com/randall77/makefat v0.0.0-20210315173500-7ddd0e42c844 // indirect
 	golang.org/x/sync v0.8.0 // indirect
 	golang.org/x/sys v0.25.0 // indirect

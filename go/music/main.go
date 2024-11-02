@@ -51,7 +51,7 @@ var (
 var myFont font.Face
 
 func loadFont() error {
-	f, err := os.Open("./font/opendyslexic.ttf") // Ensure this path is correct
+	f, err := os.Open("/font/Poppins-SemiBold.ttf") // Ensure this path is correct
 	if err != nil {
 		return fmt.Errorf("error opening font file: %w", err)
 	}
@@ -420,7 +420,7 @@ func main() {
 	}
 
 	audioContext := audio.NewContext(sampleRate)
-	player, err := NewPlayer(audioContext, ".")
+	player, err := NewPlayer(audioContext, "music")
 	if err != nil {
 		fmt.Println("Error initializing player:", err)
 		return
