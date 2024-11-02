@@ -1,10 +1,14 @@
 #!/bin/bash
 
-# Build for Windows
-GOOS=windows GOARCH=amd64 go build -o musicplayer_windows_amd64.exe
+# build_windows.sh
 
-# Build for macOS
-GOOS=darwin GOARCH=amd64 go build -o musicplayer_macos_amd64
+echo "Building Skye's Music Player for Windows..."
 
-# Build for Linux
-GOOS=linux GOARCH=amd64 go build -o musicplayer_linux_amd64
+# Set GOOS and GOARCH for Windows
+export GOOS=windows
+export GOARCH=amd64
+
+# Build the executable
+go build -o SkyesMusicPlayer.exe
+
+echo "Build complete. Output: SkyesMusicPlayer.exe"
