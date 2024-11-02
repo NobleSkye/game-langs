@@ -307,6 +307,8 @@ func (p *Player) draw(screen *ebiten.Image) {
 
 	// Draw current directory at the top
 	text.Draw(screen, "Current Directory: "+p.currentDirectory, face, 10, 15, textColor)
+	text.Draw(screen, "Up & Down For Volume"+p.volumeFeedback, face, 220, 360, textColor)
+	text.Draw(screen, "Space Unpause/Pause"+p.volumeFeedback, face, 220, 380, textColor)
 
 	if len(p.tracks) > 0 {
 		text.Draw(screen, p.tracks[p.currentTrack].name, face, 20, 35, textColor)
