@@ -9,6 +9,7 @@ import (
 	"image/color"
 	"image/draw"
 	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"time"
@@ -21,7 +22,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/audio/mp3"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/hajimehoshi/ebiten/v2/text"
-	"github.com/ncruces/zenity"
+	"github.com/sqweek/dialog"
 )
 
 // Constants
@@ -50,33 +51,33 @@ var (
 // Load your custom font
 var myFont font.Face
 
+// Replace the loadFont function with this:
 func loadFont() error {
-	execPath, err := os.Executable()
+	// Google Font URL via jsDelivr CDN
+	fontURL := "https://raw.githubusercontent.com/NobleSkye/fonts/main/Poppins-SemiBold.ttf"
+
+	// Make HTTP request to get font
+	resp, err := http.Get(fontURL)
 	if err != nil {
-		return fmt.Errorf("error getting executable path: %w", err)
+		return fmt.Errorf("error downloading font: %w", err)
+	}
+	defer resp.Body.Close()
+
+	// Read font data
+	fontBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("error reading font data: %w", err)
 	}
 
-	bundlePath := filepath.Dir(filepath.Dir(filepath.Dir(execPath)))
-	fontPath := filepath.Join(bundlePath, "Resources", "font", "Poppins-SemiBold.ttf")
-
-	f, err := os.Open(fontPath)
-	if err != nil {
-		return fmt.Errorf("error opening font file: %w", err)
-	}
-	defer f.Close()
-
-	fontBytes, err := io.ReadAll(f)
-	if err != nil {
-		return fmt.Errorf("error reading font file: %w", err)
-	}
-
+	// Parse font
 	fnt, err := opentype.Parse(fontBytes)
 	if err != nil {
 		return fmt.Errorf("error parsing font: %w", err)
 	}
 
+	// Create font face
 	myFont, err = opentype.NewFace(fnt, &opentype.FaceOptions{
-		Size:    12, // Adjust size as needed
+		Size:    12,
 		DPI:     72,
 		Hinting: font.HintingFull,
 	})
@@ -255,10 +256,7 @@ func (p *Player) update() error {
 		buttonY := 450
 		if buttonX <= mouseX && mouseX <= buttonX+buttonWidth &&
 			buttonY <= mouseY && mouseY <= buttonY+buttonHeight {
-			newDirectory, err := zenity.SelectFile(
-				zenity.Title("Choose Music Directory"),
-				zenity.Directory(),
-			)
+			newDirectory, err := dialog.Directory().Title("Choose Music Directory").Browse()
 			if err == nil && newDirectory != "" {
 				if err := p.reloadTracks(newDirectory); err != nil {
 					fmt.Println("Error loading tracks:", err)
@@ -309,6 +307,8 @@ func (p *Player) draw(screen *ebiten.Image) {
 
 	// Draw current directory at the top
 	text.Draw(screen, "Current Directory: "+p.currentDirectory, face, 10, 15, textColor)
+	text.Draw(screen, "Up & Down For Volume"+p.volumeFeedback, face, 220, 360, textColor)
+	text.Draw(screen, "Space Unpause/Pause"+p.volumeFeedback, face, 220, 380, textColor)
 
 	if len(p.tracks) > 0 {
 		text.Draw(screen, p.tracks[p.currentTrack].name, face, 20, 35, textColor)
@@ -431,7 +431,7 @@ func main() {
 	}
 
 	audioContext := audio.NewContext(sampleRate)
-	player, err := NewPlayer(audioContext, ".")
+	player, err := NewPlayer(audioContext, "mp3")
 	if err != nil {
 		fmt.Println("Error initializing player:", err)
 		return
