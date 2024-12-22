@@ -1,6 +1,6 @@
 module music
 
-go 1.23.2
+go 1.23
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.8.3
